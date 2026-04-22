@@ -16,7 +16,7 @@ const server = http.createServer(app);
 
 // ✅ Configuration CORS plus complète
 const corsOptions = {
-  origin: ['http://localhost:8100', 'http://localhost:5000', 'http://localhost:4200','http://192.168.246.108:8100','http://192.168.16.115:8100'],
+  origin: ['http://localhost:8100', 'http://localhost:5000', 'http://localhost:4200','http://192.168.246.108:8100','http://192.168.16.115:8100', 'https://frontend-artisanal.vercel.app'],
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'Accept'],
   credentials: true
@@ -56,7 +56,7 @@ app.use(handleUploadError);
 // ✅ Initialiser Socket.io avec une configuration plus complète
 const io = new Server(server, {
   cors: {
-    origin: ['http://localhost:8100', 'http://localhost:4200'],
+    origin: ['http://localhost:8100', 'http://localhost:4200', 'https://frontend-artisanal.vercel.app'],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true
