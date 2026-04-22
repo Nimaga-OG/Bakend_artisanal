@@ -173,7 +173,13 @@ const mongooseOptions = {
 };
 
 // ✅ Connexion MongoDB + démarrage serveur
-mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/artisanat', mongooseOptions)
+// Encoder le mot de passe dans l'URI MongoDB
+const rawUri = process.env.MONGO_URI || 'mongodb://localhost:27017/artisanat';
+const mongoUri = rawUri.replace(/\/\/([^:]+):([^@]+)@/, (match, user, pass) => {
+  return `//${user}:${encodeURIComponent(pass)}@`;
+});
+
+mongoose.connect(mongoUri, mongooseOptions)
   .then(() => {
     console.log('✅ Connecté à MongoDB avec succès');
     
